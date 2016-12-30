@@ -21,7 +21,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.use(flash());
-mongoose.connect("mongodb://localhost/yelpCamp");
+// mongoose.connect("mongodb://localhost/yelpCamp");
+mongoose.connect("mongodb://rishirv:bandit03@ds149278.mlab.com:49278/yelpcamp");
 
 app.use(express.static(__dirname+"/public"));
 app.set("view engine", "ejs");
