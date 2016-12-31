@@ -1,0 +1,17 @@
+.col-xs-3{
+	border: 2px solid black;
+	text-align:center;
+	padding:5%;
+}
+
+p{
+	text-align:center;
+}
+
+button{
+	visibility:hidden;
+}
+
+.grey{
+	color:grey;
+}
