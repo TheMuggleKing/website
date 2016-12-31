@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reversi</title>
+	<link rel="stylesheet" type="text/css" href="./stylesheets/reversi.css">
+</head>
+<body>
+
+<h1>Reversi</h1>
+<p>This is a two player game of reversi</p>
+<h3>It is player <span>Black</span>'s turn</h3>
+
+<a href="./reversi.html"><button>Play Again</button></a>
+
+<p id="notification"></p>
+<div class="container">
+	<div id="score">
+		<div id="black">
+			<div class="circle" style="background: black;"></div>
+			<strong>Black: <span id="blackScore">2</span></strong>
+		</div>
+		<div id="white">
+			<div class="circle"></div>
+			<strong>White: <span id="whiteScore">2</span></strong>
+		</div>
+	</div>
+	
+	<% for(var i=0; i<8; i++){ %>
+	    <div class="row">
+	    <% for(var j=0; j<8; j++){ %>
+	        <div class="box"><div class="circle"></div></div>
+	    <% } %>
+        </div>
+	<% } %>
+
+<!-- <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			<div class="circle" style="width='100px'"></div>
+		</div>
+		<div class="back">
+			<div class="circle" style="width='100px'"></div>
+		</div>
+	</div>
+</div> -->
+
+<script type="text/javascript" src="./stylesheets/reversi.js"></script>
+</body>
+</html>
