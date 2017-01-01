@@ -3,8 +3,12 @@ var express = require("express"),
     passport = require("passport"),
     router = express.Router();
 
-//Root
 router.get("/", function(req,res){
+   res.render("home"); 
+});
+
+//Root
+router.get("/yelpcamp", function(req,res){
     res.render("landing");
 });
 

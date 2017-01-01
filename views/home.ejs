@@ -1,0 +1,30 @@
+<% include ./partials/header %>
+
+<% var arr = [{name: "Reversi", link: "reversi", image: "https://lh5.ggpht.com/ag_E3bXutLnqhydh596Sw1SzSkSOthWgsdcg2NWQhIlmIYiYxVTVoSh_F0JejYAq3w=w300"}, {name: "2048", link: "2048", image: "http://gabrielecirulli.github.io/2048/meta/og_image.png"}, {name: "Color Game", link: "color_game", image: "http://www.juniorsamaroo.com/wp-content/uploads/2016/09/RBGColorGame.png"}, {name: "Patatap", link: "patatap", image: "https://lh3.ggpht.com/tDiyC60VBo5IrmouVjWvkqqdu9D3jrD_ORsluYZmZKuE0_ouiDMZjp73qeXRourVmQ=h900"}, {name: "Snakes", link: "snakes", image: "https://lh4.ggpht.com/yJe6HqfvYKO2ej-qfsoWf50T71o4346gXkF6T66FMXBAjJ5DhMt7buBDESUMqYaeIqI=w300"}, {name: "To Do App", link: "todo", image: "http://cdn.tutorialzine.com/wp-content/uploads/2012/10/todo-app-wordpress.jpg"},{name: "Yelp Camp", link:"yelpcamp", image:"https://images.unsplash.com/photo-1414016642750-7fdd78dc33d9?crop=entropy&fit=crop&fm=jpg&h=975&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925"}] %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class= "container">
+            <h1>Welcome to YelpCamp</h1>
+            <p>View some of my favorite projects</p>
+        </div>
+    </header>
+    
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <% for(var i=0; i<arr.length; i++){%>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= arr[i].image%>"></img>
+                <div class="caption">
+                    <h4><%= arr[i].name%></h4>
+                </div>
+                <p>
+                    <a href="/<%= arr[i].link%>" class="btn btn-primary">View Project</a>
+                </p>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<% include ./partials/footer %>
