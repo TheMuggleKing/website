@@ -15,7 +15,8 @@ var express          = require("express"),
 //Requiring routes
 var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
-    authRoutes       = require("./routes/index");
+    authRoutes       = require("./routes/index"),
+    projectRoutes    = require("./routes/projects");
     
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(expressSanitizer());
@@ -50,30 +51,7 @@ app.use(function(req, res, next){ //passes currentUser to every route as a middl
 app.use("/campgrounds", campgroundRoutes); //Every route in campgroundRoutes will have /campgrounds appended - /campgrounds is INDEX
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/", authRoutes);
-
-app.get("/2048", function(req,res){
-   res.render("projects/2048"); 
-});
-
-app.get("/reversi", function(req,res){
-   res.render("projects/reversi"); 
-});
-
-app.get("/patatap", function(req,res){
-   res.render("projects/patatap"); 
-});
-
-app.get("/todo", function(req,res){
-   res.render("projects/todo"); 
-});
-
-app.get("/color_game", function(req,res){
-   res.render("projects/color_game"); 
-});
-
-app.get("/snakes", function(req,res){
-   res.render("projects/snakes"); 
-});
+app.use("/", projectRoutes);
 
 // var campgrounds=[
 //   {name: 'Salmon Creek', image:'https://farm2.staticflickr.com/1363/1342367857_2fd12531e7.jpg'},
