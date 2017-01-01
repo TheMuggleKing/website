@@ -71,6 +71,10 @@ app.get("/color_game", function(req,res){
    res.render("projects/color_game"); 
 });
 
+app.get("/snakes", function(req,res){
+   res.render("projects/snakes"); 
+});
+
 // var campgrounds=[
 //   {name: 'Salmon Creek', image:'https://farm2.staticflickr.com/1363/1342367857_2fd12531e7.jpg'},
 //   {name: 'Ambush Point', image:'https://farm4.staticflickr.com/3751/9580653400_e1509d6696.jpg'},  
