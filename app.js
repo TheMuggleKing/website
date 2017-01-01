@@ -48,8 +48,8 @@ app.use(function(req, res, next){ //passes currentUser to every route as a middl
    next();
 });
 
-app.use("/campgrounds", campgroundRoutes); //Every route in campgroundRoutes will have /campgrounds appended - /campgrounds is INDEX
-app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/yelpcamp/campgrounds", campgroundRoutes); //Every route in campgroundRoutes will have /campgrounds appended - /campgrounds is INDEX
+app.use("/yelpcamp/campgrounds/:id/comments", commentRoutes);
 app.use("/", authRoutes);
 app.use("/", projectRoutes);
 

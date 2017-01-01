@@ -30,7 +30,7 @@ router.post("/", middleware.isLoggedIn, function(req,res){
             console.log(err);
         }  else{
             req.flash("success", "Created new campground");
-            res.redirect("/campgrounds");
+            res.redirect("/yelpcamp/campgrounds");
         }
     });
 });
@@ -56,7 +56,7 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res) 
        if(err){
            console.log(err);
            req.flash("error", "Campground not found");
-           res.redirect("/campgrounds");
+           res.redirect("/yelpcamp/campgrounds");
        } else{
             res.render("campgrounds/edit", {campground: campground}); 
        }
@@ -70,7 +70,7 @@ router.put("/:id", middleware.checkCampgroundOwnership, function(req, res){
             console.log(err);
         } else{
             req.flash("success", "Campground updated!");
-            res.redirect("/campgrounds/" + req.params.id);
+            res.redirect("/yelpcamp/campgrounds/" + req.params.id);
         }
     });
 });
@@ -79,10 +79,10 @@ router.put("/:id", middleware.checkCampgroundOwnership, function(req, res){
 router.delete("/:id", middleware.checkCampgroundOwnership, function(req, res){
     Campground.findByIdAndRemove(req.params.id, function(err){
         if(err){
-            res.redirect("/campgrounds");
+            res.redirect("/yelpcamp/campgrounds");
         } else{
             req.flash("success", "Successfully deleted campground");
-            res.redirect("/campgrounds");
+            res.redirect("/yelpcamp/campgrounds");
         }
     });
 });
