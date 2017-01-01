@@ -52,15 +52,19 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/", authRoutes);
 
 app.get("/2048", function(req,res){
-   res.render("2048"); 
+   res.render("projects/2048"); 
 });
 
 app.get("/reversi", function(req,res){
-   res.render("reversi"); 
+   res.render("projects/reversi"); 
 });
 
 app.get("/patatap", function(req,res){
-   res.render("patatap"); 
+   res.render("projects/patatap"); 
+});
+
+app.get("/todo", function(req,res){
+   res.render("projects/todo"); 
 });
 
 // var campgrounds=[
