@@ -84,31 +84,41 @@ function endGame(){
 	return false;
 }
 
-printboard();
-
-document.onkeydown = function(e) {
-	if(first){
-		Id = setInterval(move, 200);
-		first=false;
-	}
-    switch (e.keyCode) {
+function onmove(x, e){
+    if(first){
+        Id = setInterval(move, 200);
+        first=false;
+    }
+    switch (e) {
+        case 'l':
         case 37:
             // alert('left');
             direction = [-1,0];
             break;
+        case 'u':
         case 38:
             // alert('up');
             direction = [0, -1];
             break;
+        case 'r':
         case 39:
             // alert('right');
             direction = [1,0];
             break;
+        case 'd':
         case 40:
             // alert('down');
             direction = [0, 1];
             break;
     }
+}
+
+printboard();
+
+document.onkeydown = function(e) { //When arrow key is pressed
+    onmove(0, e.keyCode);
 };
+
+detectswipe('container', onmove); //Swipes (for mobile)
 
 // var Id = setInterval(move, 200);
