@@ -1,7 +1,6 @@
 //Change colors of boxes
 //Fix losing - works after game is lost and then arrow key is pressed with no possible moves
 //Fix winning  - alerts before printing board
-// Add swipes for mmobile
 // Makes the boxes slowly move across the page
 // Fix delay in line 221
 
@@ -130,24 +129,24 @@ function allcheck(board,score){
 }
 
 function gameOver(board){
-  for(var i=0; i<=3; i++){
-    flag=compress(board[i][3],board[i][2],board[i][1],board[i][0],0)[6];
-    if(flag===true){
-      return false;
-    }
-    flag=compress(board[3][i],board[2][i],board[1][i],board[0][i],0)[6];
-    if(flag===true){
-      return false;
-    }
-    flag=compress(board[i][0],board[i][1],board[i][2],board[i][3],0)[6];
-    if(flag===true){
-      return false;
-    }
-    flag=compress(board[0][i],board[1][i],board[2][i],board[3][i],0)[6];
-    if(flag===true){
-      return false;
-    }
-  }
+	for(var i=0; i<=3; i++){
+		flag=compress(board[i][3],board[i][2],board[i][1],board[i][0],0)[6];
+		if(flag===true){
+			return false;
+		}
+		flag=compress(board[3][i],board[2][i],board[1][i],board[0][i],0)[6];
+		if(flag===true){
+			return false;
+		}
+		flag=compress(board[i][0],board[i][1],board[i][2],board[i][3],0)[6];
+		if(flag===true){
+			return false;
+		}
+		flag=compress(board[0][i],board[1][i],board[2][i],board[3][i],0)[6];
+		if(flag===true){
+			return false;
+		}
+	}
   return true
 }
 
@@ -155,7 +154,7 @@ board=[[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]];
 
 initialpositions = [Math.floor(Math.random()*16), Math.floor(Math.random()*16)]; //Randomizes the original 2's to begin gameplay
 while(initialpositions[0]==initialpositions[1]){
-  initialpositions[1]=Math.floor(Math.random()*16);
+	initialpositions[1]=Math.floor(Math.random()*16);
 }
 // Places the original 2's to begin gameplay
 row=Math.floor((initialpositions[0])/4); 
@@ -171,81 +170,91 @@ score=0;
 firstWin=true;
 firstLose=true;
 j=0;
+
+function onmove(a,e){
+	arrow=false
+	switch (e) {
+	case 'l':
+	case 37: //left
+	  	arrow=true // arrow key and not any event is pressed
+	  	j=0; // how many times we get a move where borrd doesn't change, j=4 implies invalid move
+	  	for(var i=0; i<=3; i++){
+	   		[a,board[i][3],board[i][2],board[i][1],board[i][0],score,flag]=compress(board[i][3],board[i][2],board[i][1],board[i][0],score);
+	    	if(flag===false){
+	      		j++;
+	    	}
+	  	}
+	  	break;
+	case 'u':
+	case 38: //up
+		arrow=true
+		j=0;
+		  for(var i=0; i<=3; i++){
+	    	[a,board[3][i],board[2][i],board[1][i],board[0][i],score, flag]=compress(board[3][i],board[2][i],board[1][i],board[0][i],score);
+	    	if(flag===false){
+				j++;
+			}
+		}
+	  	break;
+	case 'r':
+	case 39: //right
+		arrow=true
+		j=0;
+		for(var i=0; i<=3; i++){
+			[a,board[i][0],board[i][1],board[i][2],board[i][3],score, flag]=compress(board[i][0],board[i][1],board[i][2],board[i][3],score);
+	    	if(flag===false){
+	    		j++;
+			}
+	  	}
+	  	break;
+	case 'd':
+	case 40: //down
+		arrow=true
+		j=0;
+		for(var i=0; i<=3; i++){
+	    	[a,board[0][i],board[1][i],board[2][i],board[3][i],score,flag]=compress(board[0][i],board[1][i],board[2][i],board[3][i],score);
+	    	if(flag===false){
+	    		j++;
+	    	}
+	  	}
+		break;
+	}
+	if(arrow===true && (j!=4)){
+	[row, col, newPositionNumber]=allcheck(board, score);
+	board[row][col]=newPositionNumber;
+	setTimeout(printboard(board),1000); //Fix delay
+	document.querySelector("span").textContent=score;
+	// Try placing gameover here
+	} else if(firstLose===true && gameOver(board)){
+		alert('No!  You have lost the game. Your score was ' + score +'. Please play again.');
+		document.querySelector("button").style.visibility="visible";
+		firstLose=false;
+	}	
+}
 document.onkeydown = function(e) { //when arrow key is pressed
-  arrow=false
-  switch (e.keyCode) {
-    case 37: //left
-      arrow=true // arrow key and not any event is pressed
-      j=0; // how many times we get a move where borrd doesn't change, j=4 implies invalid move
-      for(var i=0; i<=3; i++){
-        [a,board[i][3],board[i][2],board[i][1],board[i][0],score,flag]=compress(board[i][3],board[i][2],board[i][1],board[i][0],score);
-        if(flag===false){
-          j++;
-        }
-      }
-      break;
-    case 38: //up
-      arrow=true
-      j=0;
-      for(var i=0; i<=3; i++){
-        [a,board[3][i],board[2][i],board[1][i],board[0][i],score, flag]=compress(board[3][i],board[2][i],board[1][i],board[0][i],score);
-        if(flag===false){
-          j++;
-        }
-      }
-      break;
-    case 39: //right
-      arrow=true
-      j=0;
-      for(var i=0; i<=3; i++){
-        [a,board[i][0],board[i][1],board[i][2],board[i][3],score, flag]=compress(board[i][0],board[i][1],board[i][2],board[i][3],score);
-        if(flag===false){
-          j++;
-        }
-      }
-      break;
-    case 40: //down
-      arrow=true
-      j=0;
-      for(var i=0; i<=3; i++){
-        [a,board[0][i],board[1][i],board[2][i],board[3][i],score,flag]=compress(board[0][i],board[1][i],board[2][i],board[3][i],score);
-        if(flag===false){
-          j++;
-        }
-      }
-      break;
-  }
-  if(arrow===true && (j!=4)){
-    [row, col, newPositionNumber]=allcheck(board, score);
-    board[row][col]=newPositionNumber;
-    setTimeout(printboard(board),1000); //Fix delay
-    document.querySelector("span").textContent=score;
-    // Try placing gameover here
-  } else if(firstLose===true && gameOver(board)){
-      alert('No!  You have lost the game. Your score was ' + score +'. Please play again.');
-      document.querySelector("button").style.visibility="visible";
-      firstLose=false;
-  }
+	onmove(0, e.keyCode);
 }
 
+detectswipe('container', onmove); //Swipes (for mobile)
+
 document.querySelector("button").addEventListener("click", function(){
-  board=[[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]; // Repetitive code from below
+	board=[[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]; // Repetitive code from below
 
-  initialpositions = [Math.floor(Math.random()*16), Math.floor(Math.random()*16)]; //Randomizes the original 2's to begin gameplay
-  while(initialpositions[0]==initialpositions[1]){
-    initialpositions[1]=Math.floor(Math.random()*16);
-  } 
-  // Places the original 2's to begin gameplay
-  row=Math.floor((initialpositions[0])/4);
-  col=(initialpositions[0])%4;
-  board[row][col]=2;
-  row=Math.floor((initialpositions[1])/4);
-  col=(initialpositions[1])%4;
-  board[row][col]=2;
+	initialpositions = [Math.floor(Math.random()*16), Math.floor(Math.random()*16)]; //Randomizes the original 2's to begin gameplay
+ 	while(initialpositions[0]==initialpositions[1]){
+    	initialpositions[1]=Math.floor(Math.random()*16);
+  	} 
+	// Places the original 2's to begin gameplay
+	row=Math.floor((initialpositions[0])/4);
+	col=(initialpositions[0])%4;
+	board[row][col]=2;
+	row=Math.floor((initialpositions[1])/4);
+	col=(initialpositions[1])%4;
+	board[row][col]=2;
 
-  printboard(board);
-  score=0;
-  document.querySelector("button").style.visibility="hidden";
-  firstWin=true;
-  firstLose=true;
+	printboard(board);
+	score=0;
+	document.querySelector("button").style.visibility="hidden";
+	firstWin=true;
+	firstLose=true;
 })

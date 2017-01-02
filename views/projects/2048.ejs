@@ -11,27 +11,15 @@
 <p>Your score is <strong><span>0</span></strong></p>
 <p><button>Reset</button></p>
 
-<div class="container">
+<div class="container" id="container">
 	<div class="row">
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
- 		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
-		<div class="col-xs-3">Hi</div>
+		<% for(var i=0; i<16; i++){ %>
+			<div class="col-xs-3"></div>
+		<% } %>
 	</div>
 </div>
 
+<script type="text/javascript" src="/stylesheets/swipe.js"></script>
 <script type="text/javascript" src="/2048/2048.js"></script>
 </body>
 </html>
