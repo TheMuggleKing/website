@@ -80,8 +80,3 @@ body{
 .no-cssanimations .slideshow li {
     opacity: 1;
 }
-
-.navbar{
-  position: fixed;
-  z-index: 1;
-}
