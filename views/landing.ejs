@@ -2,25 +2,14 @@
 <html>
     <head>
         <title>YelpCamp</title>
-        <link rel="stylesheet" href="/stylesheets/bootstrap.css">
         <link rel="stylesheet" href="/stylesheets/landing.css">
+        <link rel="stylesheet" href="/stylesheets/bootstrap.css">
         <!--Modernizer offers cross browser support-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
     </head>
     <body>
 
-    <div class="container">
-        <% if(error && error.length > 0){ %>
-            <div class="alert alert-danger" role="alert">
-                <%= error %>
-            </div>
-        <% } %>
-        <% if(success && success.length > 0){ %>
-            <div class="alert alert-success" role="alert">
-                <%= success %>
-            </div>
-        <% } %>
-    </div>
+    <% include ./partials/navbar %>
 
     <div id="landing-header">
         <h1>Welcome to YelpCamp!</h1>
